@@ -1,5 +1,3 @@
-//Mini Electric Greenhouse
-
 #include <DHT.h>
 #include <LiquidCrystal_I2C.h>
 #define DHTPIN 7
@@ -35,12 +33,9 @@ void setup() {
 
 void loop() {
   unsigned long currentMillis = millis();
-  if (currentMillis - previousMillis > interval)
-  {
+  if (currentMillis - previousMillis > interval) {
     previousMillis = currentMillis;
-
     for (int i = 0; i < 5; i++) {
-
       t = dht.readTemperature();
       h = dht.readHumidity();
       lcd.clear();
@@ -63,13 +58,13 @@ void loop() {
       lcd.print(h);
       delay(500);
     }
-    if (t <= 16 && a == LOW)
-    { digitalWrite (pinResist, LOW);
+    if (t <= 16 && a == LOW) {
+      digitalWrite (pinResist, LOW);
       a = HIGH;
       b = LOW;
     }
-    else if (t >= 22 && b == LOW)
-    { digitalWrite(pinResist, HIGH);
+    else if (t >= 22 && b == LOW) {
+      digitalWrite(pinResist, HIGH);
       a = LOW;
       b = HIGH;
     }
@@ -85,14 +80,14 @@ void loop() {
       lcd.print("Soaked   ");
       delay(3000);
     }
-    if (t >= 22 && a == LOW)
-    { digitalWrite(cooler1, LOW);
+    if (t >= 22 && a == LOW) { 
+      digitalWrite(cooler1, LOW);
       digitalWrite(cooler2, LOW);
       a = HIGH;
       b = LOW;
     }
-    else if (t <= 16 && b == LOW)
-    { digitalWrite(cooler1, HIGH);
+    else if (t <= 16 && b == LOW) {
+      digitalWrite(cooler1, HIGH);
       digitalWrite(cooler2, HIGH);
       a = LOW;
       b = HIGH;
