@@ -5,6 +5,8 @@
 #define cooler1 2
 #define cooler2 3
 #define pinResist 12
+#define pinValve 8
+#define pinSensor A0
 
 DHT dht(DHTPIN, DHTTYPE);
 LiquidCrystal_I2C lcd(0x27, 20, 4);
@@ -12,9 +14,6 @@ boolean a = LOW, b = HIGH;
 float h = 0, t = 0;
 long previousMillis = 0;
 long interval = 2000;
-
-const int pinSensor = A0;
-const int pinValve = 8;
 const int limitDry = 65;
 const int limitSoaked = 80;
 const int timeWatering = 5;
@@ -28,6 +27,7 @@ void setup() {
   pinMode(cooler2, OUTPUT);
   pinMode(pinValve, OUTPUT);
   pinMode(pinResist, OUTPUT);
+  pinMode(pinSensor, INPUT);
   digitalWrite(pinValve, HIGH);
 }
 
@@ -80,7 +80,7 @@ void loop() {
       lcd.print("Soaked   ");
       delay(3000);
     }
-    if (t >= 22 && a == LOW) { 
+    if (t >= 22 && a == LOW) {
       digitalWrite(cooler1, LOW);
       digitalWrite(cooler2, LOW);
       a = HIGH;

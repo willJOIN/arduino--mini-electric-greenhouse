@@ -5,6 +5,8 @@
 #define cooler1 2
 #define cooler2 3
 #define pinoResist 12
+#define pinoValvula 8
+#define pinoSensor A0
 
 DHT dht(DHTPIN, DHTTYPE);
 LiquidCrystal_I2C lcd(0x27, 20, 4);
@@ -12,8 +14,6 @@ boolean a = LOW, b = HIGH;
 float h = 0, t = 0;
 long previousMillis = 0;
 long interval = 2000;
-const int pinoSensor = A0;
-const int pinoValvula = 8;
 const int limiarSeco = 65;
 const int limiarEncharcado = 80;
 const int tempoRega = 5;
@@ -27,6 +27,7 @@ void setup() {
   pinMode(cooler2, OUTPUT);
   pinMode(pinoValvula, OUTPUT);
   pinMode(pinoResist, OUTPUT);
+  pinMode(pinoSensor, INPUT);
   digitalWrite(pinoValvula, HIGH);
 }
 
